@@ -23,8 +23,8 @@
  */
 package me.entityreborn.crank;
 
-import me.entityreborn.crank.gui.Canvas;
 import javax.swing.JFrame;
+import me.entityreborn.crank.gui.Canvas;
 
 /**
  *

@@ -38,9 +38,7 @@ import me.entityreborn.crank.screens.PlayScreen;
  * @author Jason Unger <entityreborn@gmail.com>
  */
 public class HUD implements MouseListener {
-    static HUD instance;
-    final ArrayList<String> lines;
-    MouseEvent lastEvent;
+    private static HUD instance;
     
     public static HUD get() {
         if (instance == null) {
@@ -49,7 +47,9 @@ public class HUD implements MouseListener {
         
         return instance;
     }
-
+    private final ArrayList<String> lines;
+    private MouseEvent lastEvent;
+    
     public HUD() {
         this.lines = new ArrayList<>();
         Crank.get().addMouseListener(new MouseListenerAdapter(this));

@@ -23,9 +23,9 @@
  */
 package me.entityreborn.crank;
 
-import me.entityreborn.crank.entities.Entity;
 import java.util.HashSet;
 import java.util.Set;
+import me.entityreborn.crank.entities.Entity;
 import me.entityreborn.crank.gui.CameraView;
 
 /**
@@ -33,58 +33,56 @@ import me.entityreborn.crank.gui.CameraView;
  * @author Jason Unger <entityreborn@gmail.com>
  */
 public class EntityManager {
-    
-    static EntityManager instance;
-    
+
+    private static EntityManager instance;
+
     public static EntityManager get() {
         if (instance == null) {
             instance = new EntityManager();
         }
-        
+
         return instance;
     }
-    
-    Set<Entity> entities = new HashSet<>();
-    
+    private final Set<Entity> entities = new HashSet<>();
+
     private EntityManager() {
-        
     }
-    
+
     public Set<Entity> getEntities() {
         return new HashSet<>(entities);
     }
-    
+
     public boolean addEntity(Entity ent) {
         return entities.add(ent);
     }
-    
+
     public boolean removeEntity(Entity ent) {
         return entities.remove(ent);
     }
-    
+
     public Set<Entity> getEntitiesInView(CameraView view) {
         Set<Entity> inView = new HashSet<>();
-        
+
         for (Entity ent : getEntities()) {
-            if (ent.getX() >= view.getX() - ent.getWidth() &&
-                    ent.getX() - ent.getWidth() / 2 <= view.getX() + view.getWidth()) {
+            if (ent.getX() >= view.getX() - ent.getWidth()
+                    && ent.getX() - ent.getWidth() / 2 <= view.getX() + view.getWidth()) {
                 inView.add(ent);
             }
         }
-        
+
         return inView;
     }
-    
+
     public Set<Entity> getEntityCollisions(Entity entity) {
         Set<Entity> ents = new HashSet<>();
-        
+
         for (Entity ent : getEntities()) {
-            if (ent.getBounds().intersects(entity.getBounds()) 
+            if (ent.getBounds().intersects(entity.getBounds())
                     && ent != entity) {
                 ents.add(ent);
             }
         }
-        
+
         return ents;
     }
 }

@@ -27,40 +27,10 @@ package me.entityreborn.crank.entities;
  *
  * @author Jason Unger <entityreborn@gmail.com>
  */
-public abstract class LivingEntity extends Entity implements Living {
+enum PlayerState {
 
-    private int health;
-
-    public LivingEntity() {
-    }
-
-    @Override
-    public void die() {
-        health = 0;
-    }
-
-    @Override
-    public int getHealth() {
-        return health;
-    }
-
-    @Override
-    public boolean isDead() {
-        return health <= 0;
-    }
-
-    @Override
-    public void setHealth(int newhealth) {
-        health = newhealth;
-    }
-
-    @Override
-    public void incHealth(int inc) {
-        health += inc;
-    }
-
-    @Override
-    public void decHealth(int dec) {
-        health -= dec;
-    }
+    STANDING,
+    JUMPING,
+    FALLING,
+    WALKING;
 }

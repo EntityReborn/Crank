@@ -21,46 +21,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package me.entityreborn.crank.entities;
+package me.entityreborn.crank;
 
 /**
  *
  * @author Jason Unger <entityreborn@gmail.com>
  */
-public abstract class LivingEntity extends Entity implements Living {
+public enum GameState {
 
-    private int health;
-
-    public LivingEntity() {
-    }
-
-    @Override
-    public void die() {
-        health = 0;
-    }
-
-    @Override
-    public int getHealth() {
-        return health;
-    }
-
-    @Override
-    public boolean isDead() {
-        return health <= 0;
-    }
-
-    @Override
-    public void setHealth(int newhealth) {
-        health = newhealth;
-    }
-
-    @Override
-    public void incHealth(int inc) {
-        health += inc;
-    }
-
-    @Override
-    public void decHealth(int dec) {
-        health -= dec;
-    }
+    INTRO,
+    PLAY,
+    PAUSED,
+    GAMEWON,
+    GAMELOST,
+    CHANGINGSTATE;
 }

@@ -23,10 +23,10 @@
  */
 package me.entityreborn.crank;
 
-import me.entityreborn.crank.gui.Canvas;
 import java.awt.Graphics2D;
 import java.util.Timer;
 import java.util.TimerTask;
+import me.entityreborn.crank.gui.Canvas;
 import me.entityreborn.crank.screens.IntroScreen;
 import me.entityreborn.crank.screens.PlayScreen;
 import me.entityreborn.crank.screens.Screen;
@@ -36,26 +36,8 @@ import me.entityreborn.crank.screens.Screen;
  * @author Jason Unger <entityreborn@gmail.com>
  */
 public class GameManager {
-
-    public Screen getCurrentScreen() {
-        return currentScreen;
-    }
     
-    public enum GameState {
-        INTRO,
-        PLAY,
-        PAUSED,
-        GAMEWON,
-        GAMELOST,
-        CHANGINGSTATE,
-    }
-    
-    private Screen currentScreen;
-    Timer timer;
-    TimerTask tickTask;
-    GameState state;
-    
-    static GameManager instance;
+    private static GameManager instance;
     
     public static GameManager get() {
         if (instance == null) {
@@ -65,8 +47,17 @@ public class GameManager {
         return instance;
     }
 
+    private Screen currentScreen;
+    private Timer timer;
+    private TimerTask tickTask;
+    private GameState state;
+    
     private GameManager() {
         currentScreen = new IntroScreen();
+    }
+
+    public Screen getCurrentScreen() {
+        return currentScreen;
     }
     
     public void setGameState(GameState newstate) {

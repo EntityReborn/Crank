@@ -37,17 +37,8 @@ import me.entityreborn.crank.screens.PlayScreen;
  * @author Jason Unger <entityreborn@gmail.com>
  */
 public class Player extends LivingEntity implements KeyListener {
-    enum PlayerState {
-        STANDING,
-        JUMPING,
-        FALLING,
-        WALKING
-    }
     
-    static Player instance;
-    boolean leftPressed;
-    boolean rightPressed;
-    PlayerState playerState;
+    private static Player instance;
     
     public static Player get() {
         if (instance == null) {
@@ -56,6 +47,10 @@ public class Player extends LivingEntity implements KeyListener {
         
         return instance;
     }
+    
+    private boolean leftPressed;
+    private boolean rightPressed;
+    private PlayerState playerState;
     
     private Player() {
         sprite = new Sprite("Player.png", 128, 256);
@@ -111,8 +106,8 @@ public class Player extends LivingEntity implements KeyListener {
             }
         }
     }
-    
-    public void jump() {
+
+        public void jump() {
         yAccel -= 18;
         
         if (riding != null) {
@@ -179,10 +174,10 @@ public class Player extends LivingEntity implements KeyListener {
                     getActualY() - getHeight(), 64, getHeight());
     }
     
-
     @Override
     public void animate() {
-        if (playerState == PlayerState.WALKING || playerState == PlayerState.STANDING) {
+        if (playerState == PlayerState.WALKING || 
+                playerState == PlayerState.STANDING) {
             sprite.increment();
         } else {
             if (yAccel < 0) {

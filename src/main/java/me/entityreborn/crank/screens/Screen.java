@@ -25,11 +25,13 @@ package me.entityreborn.crank.screens;
 
 import java.awt.Graphics2D;
 
+
 /**
  *
  * @author Jason Unger <entityreborn@gmail.com>
  */
 public interface Screen {
-    void render(Graphics2D gfx);
-    void tick();
+    void render (Graphics2D gfx);
+
+    void tick ();
 }

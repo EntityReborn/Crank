@@ -25,6 +25,7 @@ package me.entityreborn.crank.entities;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import me.entityreborn.crank.gui.Canvas;
@@ -136,7 +137,7 @@ public abstract class Entity {
     }
 
     public Set<Entity> getRiders() {
-        return riders;
+        return Collections.unmodifiableSet(riders);
     }
     
     public void addRider(Entity rider) {

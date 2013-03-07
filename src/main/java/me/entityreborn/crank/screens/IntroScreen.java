@@ -26,11 +26,8 @@ package me.entityreborn.crank.screens;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import me.entityreborn.crank.*;
 import me.entityreborn.crank.gui.Canvas;
-import me.entityreborn.crank.Crank;
-import me.entityreborn.crank.GameManager;
-import me.entityreborn.crank.KeyListener;
-import me.entityreborn.crank.KeyListenerAdapter;
 
 /**
  *
@@ -60,7 +57,7 @@ public class IntroScreen implements Screen, KeyListener {
         int key = e.getKeyCode();
         
         if (key == KeyEvent.VK_ENTER) {
-            GameManager.get().setGameState(GameManager.GameState.PLAY);
+            GameManager.get().setGameState(GameState.PLAY);
         }
     }
 

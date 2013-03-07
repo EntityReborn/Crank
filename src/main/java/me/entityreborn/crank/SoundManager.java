@@ -27,20 +27,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.DataLine;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.SourceDataLine;
-import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.sound.sampled.*;
 
 /**
  *
  * @author Jason Unger <entityreborn@gmail.com>
  */
 public class SoundManager {
-    static SoundManager instance;
+    private static SoundManager instance;
     
     public static SoundManager get() {
         if (instance == null) {
@@ -59,14 +53,14 @@ public class SoundManager {
 
     }
 
-    class PlayThread extends Thread {
+    private class PlayThread extends Thread {
 
         SourceDataLine sdl;
         AudioFormat format;
         AudioInputStream ais;
         byte tempBuffer[] = new byte[10000];
 
-        public PlayThread(URL soundfile) {
+        private PlayThread(URL soundfile) {
             try {
                 ais = AudioSystem.getAudioInputStream(soundfile);
             } catch (UnsupportedAudioFileException | IOException ex) {
@@ -82,7 +76,6 @@ public class SoundManager {
                 sdl = (SourceDataLine) AudioSystem.getLine(dli);
             } catch (LineUnavailableException ex) {
                 Logger.getLogger(SoundManager.class.getName()).log(Level.SEVERE, null, ex);
-                return;
             }
         }
 

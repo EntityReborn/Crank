@@ -4,13 +4,7 @@
  */
 package me.entityreborn.crank;
 
-import java.awt.Graphics;
-import java.awt.GraphicsConfiguration;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
-import java.awt.Image;
-import java.awt.Toolkit;
-import java.awt.Transparency;
+import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
@@ -67,6 +61,9 @@ public class Util {
         graphics.dispose();
         
         return image;
+    }
+
+    private Util() {
     }
 
     private static class LoaderObserver implements ImageObserver {

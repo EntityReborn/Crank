@@ -24,14 +24,13 @@
 package me.entityreborn.crank.screens;
 
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.util.HashSet;
 import java.util.Set;
 import me.entityreborn.crank.Crank;
-import me.entityreborn.crank.entities.Entity;
 import me.entityreborn.crank.EntityManager;
 import me.entityreborn.crank.KeyListenerAdapter;
 import me.entityreborn.crank.entities.Block;
+import me.entityreborn.crank.entities.Entity;
 import me.entityreborn.crank.entities.MovingBlock;
 import me.entityreborn.crank.entities.Player;
 import me.entityreborn.crank.gui.CameraView;
@@ -42,9 +41,6 @@ import me.entityreborn.crank.gui.HUD;
  * @author Jason Unger <entityreborn@gmail.com>
  */
 public class PlayScreen implements Screen {
-    private CameraView camera;
-    Set<Block> blocks = new HashSet<>();
-    int animatorcount;
     
     private static PlayScreen instance;
     
@@ -55,8 +51,12 @@ public class PlayScreen implements Screen {
         
         return instance;
     }
-
+    private CameraView camera;
+    private final Set<Block> blocks;
+    private int animatorcount;
+    
     private PlayScreen() {
+        blocks = new HashSet<>();
         camera = new CameraView();
         EntityManager.get().addEntity(Player.get());
         Crank.get().addKeyListener(new KeyListenerAdapter(Player.get()));
@@ -125,7 +125,7 @@ public class PlayScreen implements Screen {
         }
     }
 
-    public CameraView getCamera() {
+        public CameraView getCamera() {
         return camera;
     }
 }

@@ -23,11 +23,7 @@
  */
 package me.entityreborn.crank.gui;
 
-import java.awt.AlphaComposite;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.Toolkit;
+import java.awt.*;
 import javax.swing.JPanel;
 import me.entityreborn.crank.GameManager;
 
@@ -36,81 +32,84 @@ import me.entityreborn.crank.GameManager;
  * @author Jason Unger <entityreborn@gmail.com>
  */
 public class Canvas extends JPanel {
+
+    private static final long serialVersionUID = 1L;
+
     public enum FadeState {
+
         HIDDEN,
         FADEIN,
         SHOWING,
         FADEOUT
     }
-    
-    static Canvas instance;
-    GameManager manager = GameManager.get();
-    float opacity;
-    FadeState fade = FadeState.FADEIN;
-    
+    private static Canvas instance;
+    private GameManager manager = GameManager.get();
+    private float opacity;
+    private FadeState fade = FadeState.FADEIN;
+
     public static Canvas get() {
         if (instance == null) {
             instance = new Canvas();
         }
-        
+
         return instance;
     }
-    
+
     public Canvas() {
         initComponents();
-        
+
         if (instance == null) {
             instance = this;
         }
-        
+
         manager.start();
     }
-    
+
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        
-        Graphics2D gfx = (Graphics2D)g;
-        
+
+        Graphics2D gfx = (Graphics2D) g;
+
         gfx.setComposite(AlphaComposite.getInstance(
-            AlphaComposite.SRC_OVER, opacity));
-        gfx.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
+                AlphaComposite.SRC_OVER, opacity));
+        gfx.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         if (fade == FadeState.FADEIN) {
             opacity += 0.03;
-            
+
             if (opacity > 1) {
                 fade = FadeState.SHOWING;
                 opacity = 1;
             }
         } else if (fade == FadeState.FADEOUT) {
             opacity -= 0.03;
-            
+
             if (opacity < 0) {
                 fade = FadeState.HIDDEN;
                 opacity = 0;
             }
         }
-        
+
         manager.render(gfx);
-        
+
         Toolkit.getDefaultToolkit().sync();
-        
+
         g.dispose();
     }
-    
+
     public void fadeIn() {
         fade = FadeState.FADEIN;
     }
-    
+
     public void fadeOut() {
         fade = FadeState.FADEOUT;
     }
-    
+
     public FadeState getFadeState() {
         return fade;
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

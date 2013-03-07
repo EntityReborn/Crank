@@ -26,25 +26,25 @@ package me.entityreborn.crank;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+
 /**
  *
  * @author Jason Unger <entityreborn@gmail.com>
  */
 public class KeyListenerAdapter extends KeyAdapter {
-    KeyListener target;
-    public KeyListenerAdapter(KeyListener target) {
+    private KeyListener target;
+
+    public KeyListenerAdapter (KeyListener target) {
         this.target = target;
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
+    public void keyPressed (KeyEvent e) {
         target.keyPressed(e);
     }
-    
+
     @Override
-    public void keyReleased(KeyEvent e) {
+    public void keyReleased (KeyEvent e) {
         target.keyReleased(e);
     }
-    
-    
 }

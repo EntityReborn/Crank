@@ -23,25 +23,21 @@
  */
 package me.entityreborn.crank.gui;
 
-import me.entityreborn.crank.entities.Entity;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
 import me.entityreborn.crank.Crank;
 import me.entityreborn.crank.EntityManager;
-import me.entityreborn.crank.GameManager;
 import me.entityreborn.crank.KeyListener;
 import me.entityreborn.crank.KeyListenerAdapter;
-import me.entityreborn.crank.MouseListener;
+import me.entityreborn.crank.entities.Entity;
 
 /**
  *
  * @author Jason Unger <entityreborn@gmail.com>
  */
-public class CameraView implements KeyListener, MouseListener  {
-    int x;
-    int xaccel;
-    GameManager manager = GameManager.get();
+public class CameraView implements KeyListener  {
+    private int x;
+    private int xaccel;
     
     public CameraView() {
         Crank.get().addKeyListener(new KeyListenerAdapter(this));
@@ -85,15 +81,5 @@ public class CameraView implements KeyListener, MouseListener  {
         if (key == KeyEvent.VK_Q || key == KeyEvent.VK_E) {
              xaccel = 0;
         }
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
